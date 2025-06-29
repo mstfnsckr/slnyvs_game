@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>İyi Doğdun Aşkım</title>
+    <style>
+        :root {
+            --pink: #ff6b9d;
+            --gold: #ffd700;
+            --dark-pink: #d63473;
+        }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            background: #0f0c29;
+            background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .container {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            padding: 0 20px;
+            box-sizing: border-box;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px var(--pink);
+            color: var(--gold);
+            animation: pulse 2s infinite;
+            padding: 0 10px;
+            position: absolute;
+            top: 20px;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .cake-container {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            margin: 0 auto;
+            animation: float 6s ease-in-out infinite;
+            margin-top: 50px;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .cake {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .plate {
+            width: 220px;
+            height: 25px;
+            background: radial-gradient(circle, #fff 0%, #ccc 100%);
+            border-radius: 50%;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            position: absolute;
+            bottom: 0;
+            z-index: 1;
+        }
+        
+        .cake-bottom {
+            width: 180px;
+            height: 70px;
+            background: linear-gradient(to bottom, #f9c5d1, #fce4ec);
+            border-radius: 12px 12px 0 0;
+            position: absolute;
+            bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 2;
+        }
+        
+        .cake-top {
+            width: 160px;
+            height: 60px;
+            background: linear-gradient(to bottom, #fce4ec, #fff);
+            border-radius: 12px 12px 0 0;
+            position: absolute;
+            bottom: 90px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            z-index: 3;
+        }
+        
+        .frosting {
+            position: absolute;
+            bottom: 150px;
+            width: 150px;
+            height: 20px;
+            background: #fff;
+            border-radius: 50%;
+            z-index: 4;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .baby-photo {
+            position: absolute;
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background-color: #fce4ec;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border: 4px solid white;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            bottom: 25px;
+            z-index: 4;
+            transition: all 1s ease;
+            object-fit: cover;
+        }
+        
+        .baby-photo.fullscreen {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            border-radius: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+            border: none;
+            background-size: contain;
+            background-color: black;
+            background-position: center;
+            object-fit: contain;
+        }
+        
+        .candles {
+            position: absolute;
+            bottom: 170px;
+            display: flex;
+            gap: 10px;
+            z-index: 5;
+            justify-content: center;
+            width: 100%;
+        }
+        
+        .candle {
+            width: 14px;
+            height: 50px;
+            background: linear-gradient(to bottom, #fff, #f5f5f5);
+            border-radius: 4px;
+            position: relative;
+            box-shadow: 0 0 4px rgba(255,255,255,0.8);
+        }
+        
+        .flame {
+            position: absolute;
+            width: 12px;
+            height: 25px;
+            background: linear-gradient(to top, var(--gold), #ff8c00);
+            border-radius: 50% 50% 20% 20%;
+            top: -20px;
+            left: 1px;
+            box-shadow: 0 0 15px var(--gold), 0 0 30px #ff8c00;
+            animation: flicker 0.8s infinite alternate, sway 1.5s infinite ease-in-out;
+            transform-origin: center bottom;
+            opacity: 1;
+            transition: opacity 0.5s, transform 0.5s;
+        }
+        
+        @keyframes flicker {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.9; }
+        }
+        
+        @keyframes sway {
+            0%, 100% { transform: rotate(-2deg); }
+            50% { transform: rotate(2deg); }
+        }
+        
+        .flame.extinguished {
+            opacity: 0;
+            transform: scale(0);
+        }
+        
+        .instructions {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            font-size: 1rem;
+            opacity: 0.9;
+            z-index: 5;
+            display: none;
+            padding: 0 20px;
+            box-sizing: border-box;
+            font-weight: bold;
+            color: var(--gold);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background-color: var(--pink);
+            opacity: 0;
+            z-index: 10;
+        }
+        
+        .balloon {
+            position: absolute;
+            width: 50px;
+            height: 65px;
+            border-radius: 50%;
+            opacity: 0;
+            z-index: 1;
+        }
+        
+        .balloon-string {
+            position: absolute;
+            width: 2px;
+            height: 80px;
+            background-color: rgba(255,255,255,0.7);
+            bottom: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .balloon-container {
+            position: absolute;
+            z-index: 15;
+        }
+        
+        .banner {
+            position: absolute;
+            width: 200px;
+            height: 35px;
+            background-color: var(--pink);
+            color: white;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            z-index: 16;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1rem;
+            box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            opacity: 0;
+        }
+        
+        .banner:after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid var(--pink);
+            transform: translateX(-50%);
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            flex-direction: column;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        
+        .overlay h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--gold);
+        }
+        
+        .overlay p {
+            font-size: 1rem;
+            margin-bottom: 30px;
+            max-width: 80%;
+        }
+        
+        .permission-btn {
+            padding: 12px 25px;
+            font-size: 1rem;
+            background: var(--pink);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+        }
+        
+        .permission-btn:hover {
+            background: var(--dark-pink);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+        }
+        
+        .permission-btn:active {
+            transform: translateY(1px);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .hearts {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0;
+            z-index: 10;
+            animation: hearts-float 4s ease-out forwards;
+        }
+        
+        @keyframes hearts-float {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-120px) scale(1.3); opacity: 0; }
+        }
+        
+        .celebration-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 20;
+        }
+        
+        .simple-instruction {
+            position: absolute;
+            bottom: 60px;
+            width: 100%;
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--gold);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+            z-index: 5;
+            display: none;
+            padding: 0 20px;
+            box-sizing: border-box;
+            font-weight: bold;
+        }
+        
+        .content {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .final-message {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 200;
+            opacity: 0;
+            transition: opacity 2s ease;
+            pointer-events: none;
+        }
+        
+        .final-message.show {
+            opacity: 1;
+        }
+        
+        .final-message-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: white;
+            text-align: center;
+            text-shadow: 0 0 10px var(--pink);
+            padding: 20px;
+            max-width: 90%;
+        }
+        
+        /* Mobil dokunmatik optimizasyon */
+        button, .candle {
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* Yatay mod için ayarlamalar */
+        @media (orientation: portrait) and (min-width: 500px) {
+            .cake-container {
+                width: 300px;
+                height: 300px;
+                margin-top: 50px;
+            }
+            
+            .plate {
+                width: 260px;
+                height: 30px;
+            }
+            
+            .cake-bottom {
+                width: 220px;
+                height: 90px;
+                bottom: 25px;
+            }
+            
+            .cake-top {
+                width: 200px;
+                height: 75px;
+                bottom: 115px;
+            }
+            
+            .frosting {
+                bottom: 190px;
+                width: 190px;
+                height: 25px;
+            }
+            
+            .baby-photo {
+                width: 140px;
+                height: 140px;
+                bottom: 30px;
+            }
+            
+            .candles {
+                bottom: 215px;
+                gap: 15px;
+            }
+            
+            .candle {
+                width: 18px;
+                height: 60px;
+            }
+            
+            .flame {
+                width: 14px;
+                height: 30px;
+                top: -25px;
+                left: 2px;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+                top: 20px;
+            }
+            
+            .simple-instruction {
+                font-size: 1.4rem;
+                bottom: 60px;
+            }
+            
+            .final-message-text {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes balloon-float {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-120vh); }
+        }
+        
+        @keyframes banner-fall {
+            0% { transform: translateX(-50%) rotate(0deg); }
+            100% { transform: translateX(-50%) translateY(100vh) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay" id="permissionOverlay">
+        <h2>🎂 İyi Doğdun Aşkım 🎉</h2>
+        <p>Mumları üflemek için mikrofon erişimine izin vermelisin</p>
+        <button class="permission-btn" id="permissionBtn">İzin Ver</button>
+    </div>
+    
+    <div class="content" id="content">
+        <div class="simple-instruction" id="simpleInstruction">Dilek tut ve mumlara üfle!</div>
+        
+        <div class="container">
+            <h1>İyi Doğdun Aşkım</h1>
+            
+            <div class="cake-container">
+                <div class="cake">
+                    <div class="plate"></div>
+                    <div class="cake-bottom"></div>
+                    <div class="cake-top"></div>
+                    <div class="frosting"></div>
+                    <div class="baby-photo" id="babyPhoto"></div>
+                    <div class="candles">
+                        <div class="candle">
+                            <div class="flame"></div>
+                        </div>
+                        <div class="candle">
+                            <div class="flame"></div>
+                        </div>
+                        <div class="candle">
+                            <div class="flame"></div>
+                        </div>
+                        <div class="candle">
+                            <div class="flame"></div>
+                        </div>
+                        <div class="candle">
+                            <div class="flame"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="instructions" id="instructions">Mikrofona doğru üfleyerek mumları söndür!</div>
+        </div>
+        
+        <div class="celebration-container" id="celebrationContainer"></div>
+        
+        <div class="final-message" id="finalMessage">
+            <div class="final-message-text">İyi ki varsın iyi ki tanımışım <br>Seni çok seviyorum HERŞEYİM</div>
+        </div>
+        
+        <audio id="birthdaySong" loop></audio>
+        <audio id="blowSound" src="https://assets.mixkit.co/sfx/preview/mixkit-wind-whistling-1491.mp3"></audio>
+        <audio id="popSound" src="https://assets.mixkit.co/sfx/preview/mixkit-balloon-pop-with-delay-2354.mp3"></audio>
+    </div>
+    
+    <script>
+        // Elementleri seç
+        const permissionOverlay = document.getElementById('permissionOverlay');
+        const permissionBtn = document.getElementById('permissionBtn');
+        const content = document.getElementById('content');
+        const simpleInstruction = document.getElementById('simpleInstruction');
+        const instructions = document.getElementById('instructions');
+        const birthdaySong = document.getElementById('birthdaySong');
+        const blowSound = document.getElementById('blowSound');
+        const popSound = document.getElementById('popSound');
+        const flames = document.querySelectorAll('.flame');
+        const celebrationContainer = document.getElementById('celebrationContainer');
+        const babyPhoto = document.getElementById('babyPhoto');
+        const finalMessage = document.getElementById('finalMessage');
+        
+        // Mikrofon erişimi için
+        let audioContext;
+        let analyser;
+        let microphone;
+        let isBlowing = false;
+        let blownCandles = 0;
+        const totalCandles = 5;
+        let bannerDelay = 0;
+        
+        // İzin butonu
+        permissionBtn.addEventListener('click', async () => {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                initAudio(stream);
+                permissionOverlay.style.display = 'none';
+                content.style.display = 'block';
+                simpleInstruction.style.display = 'block';
+                
+                // iOS için otomatik oynatma izni
+                document.body.addEventListener('touchstart', function() {}, { once: true });
+                
+                // Fotoğrafı ayarla (buraya kendi fotoğraf URL'nizi ekleyin)
+                babyPhoto.style.backgroundImage = 'url("bebegim.jpeg")';
+                
+                // Müzik dosyasını ayarla (buraya kendi müzik URL'nizi ekleyin)
+                birthdaySong.src = "Aydilge-Hayat Şaşırtır.mp3";
+                
+            } catch (error) {
+                console.error('Mikrofon erişim hatası:', error);
+                alert('Mikrofon erişimi için izin vermelisiniz! Sayfayı yenilemeyi deneyebilirsiniz.');
+            }
+        });
+        
+        // Audio context başlatma
+        function initAudio(stream) {
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            analyser = audioContext.createAnalyser();
+            microphone = audioContext.createMediaStreamSource(stream);
+            microphone.connect(analyser);
+            analyser.fftSize = 256;
+            
+            detectBlowing();
+        }
+        
+        // Üfleme algılama
+        function detectBlowing() {
+            const bufferLength = analyser.frequencyBinCount;
+            const dataArray = new Uint8Array(bufferLength);
+            
+            const checkVolume = () => {
+                analyser.getByteFrequencyData(dataArray);
+                
+                let sum = 0;
+                for (let i = 0; i < bufferLength; i++) {
+                    sum += dataArray[i];
+                }
+                
+                const average = sum / bufferLength;
+                
+                // Üfleme algılandı
+                if (average > 50 && !isBlowing && blownCandles < totalCandles) {
+                    isBlowing = true;
+                    blowCandle();
+                } else if (average <= 50) {
+                    isBlowing = false;
+                }
+                
+                requestAnimationFrame(checkVolume);
+            };
+            
+            checkVolume();
+        }
+        
+        // Tek bir mumu söndürme
+        function blowCandle() {
+            // Üfleme sesini çal
+            blowSound.currentTime = 0;
+            blowSound.play();
+            
+            // Sıradaki mumu söndür
+            if (blownCandles < totalCandles) {
+                flames[blownCandles].classList.add('extinguished');
+                createHeart(flames[blownCandles]);
+                blownCandles++;
+                
+                // Tüm mumlar söndüğünde kutlama başlat
+                if (blownCandles === totalCandles) {
+                    startCelebration();
+                }
+            }
+        }
+        
+        // Kutlama animasyonlarını başlat
+        function startCelebration() {
+            // Basit talimatı gizle
+            simpleInstruction.style.display = 'none';
+            
+            // Müziği çal
+            birthdaySong.play().catch(e => {
+                console.log("Otomatik çalma engellendi, kullanıcı etkileşimi gerekiyor.");
+            });
+            
+            // Balonları göster (1 saniye arayla)
+            const messages = ['Dünyanın En Güzel Kızı', 'İyi Doğdun!', 'Mutlu Yıllar!', 'Son ve Tek', 'AŞKIMSIN'];
+            messages.forEach((message, index) => {
+                setTimeout(() => {
+                    createBalloonWithBanner(message);
+                }, index * 1000);
+            });
+            
+            // Konfeti animasyonu
+            setTimeout(() => {
+                createConfetti();
+            }, 1000);
+            
+            // 10 saniye sonra fotoğrafı büyüt ve son mesajı göster
+            setTimeout(() => {
+                babyPhoto.classList.add('fullscreen');
+                setTimeout(() => {
+                    finalMessage.classList.add('show');
+                }, 2000);
+            }, 10000);
+        }
+        
+        // Konfeti oluştur
+        function createConfetti() {
+            const colors = ['#ff6b9d', '#ffd700', '#ff8c00', '#00bfff', '#7cfc00'];
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = -10 + 'px';
+                confetti.style.width = Math.random() * 8 + 4 + 'px';
+                confetti.style.height = Math.random() * 8 + 4 + 'px';
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                
+                celebrationContainer.appendChild(confetti);
+                
+                const animationDuration = Math.random() * 3 + 2;
+                const delay = Math.random() * 2;
+                
+                confetti.style.animation = `confetti-fall ${animationDuration}s linear ${delay}s forwards`;
+                confetti.style.opacity = '1';
+                
+                // Temizlik
+                setTimeout(() => {
+                    confetti.remove();
+                }, (animationDuration + delay) * 1000);
+            }
+        }
+        
+        // Balon ve pankart oluştur
+        function createBalloonWithBanner(message) {
+            const colors = ['#ff6b9d', '#ffd700', '#ff8c00', '#00bfff', '#7cfc00'];
+            
+            const balloonContainer = document.createElement('div');
+            balloonContainer.className = 'balloon-container';
+            
+            const balloon = document.createElement('div');
+            balloon.className = 'balloon';
+            balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            balloon.style.width = Math.random() * 30 + 50 + 'px';
+            balloon.style.height = Math.random() * 30 + 60 + 'px';
+            
+            const string = document.createElement('div');
+            string.className = 'balloon-string';
+            
+            balloonContainer.appendChild(balloon);
+            balloonContainer.appendChild(string);
+            
+            // Başlangıç pozisyonu
+            balloonContainer.style.left = Math.random() * 80 + 10 + 'vw';
+            balloonContainer.style.bottom = '-150px';
+            balloonContainer.style.opacity = '1';
+            
+            celebrationContainer.appendChild(balloonContainer);
+            
+            // Balon uçma animasyonu
+            const floatDuration = 8;
+            balloonContainer.style.animation = `balloon-float ${floatDuration}s ease-in forwards`;
+            
+            // Pankart ekle
+            const banner = document.createElement('div');
+            banner.className = 'banner';
+            banner.textContent = message;
+            banner.style.opacity = '1';
+            
+            // Pankart pozisyonu
+            banner.style.top = '-40px';
+            banner.style.left = '50%';
+            banner.style.transform = 'translateX(-50%) rotate(' + (Math.random() * 20 - 10) + 'deg)';
+            
+            balloonContainer.appendChild(banner);
+            
+            // Balon patlama animasyonu
+            setTimeout(() => {
+                popSound.currentTime = 0;
+                popSound.play();
+                
+                // Balonu patlat
+                balloon.style.transform = 'scale(1.2)';
+                balloon.style.opacity = '0';
+                balloon.style.transition = 'all 0.3s';
+                
+                // Pankart düşsün
+                setTimeout(() => {
+                    banner.style.animation = 'banner-fall 1.5s ease-in forwards';
+                    
+                    // Temizlik
+                    setTimeout(() => {
+                        balloonContainer.remove();
+                    }, 1500);
+                }, 300);
+            }, (floatDuration - 2) * 1000);
+        }
+        
+        // Kalp animasyonu
+        function createHeart(element) {
+            const heart = document.createElement('div');
+            heart.className = 'hearts';
+            heart.innerHTML = '❤️';
+            heart.style.left = element.getBoundingClientRect().left + 'px';
+            heart.style.top = element.getBoundingClientRect().top + 'px';
+            
+            celebrationContainer.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
+        }
+        
+        // Sayfa yüklendiğinde içeriği gizle
+        window.onload = () => {
+            content.style.display = 'none';
+            simpleInstruction.style.display = 'none';
+            
+            // iOS için dokunma olayı ekle
+            document.addEventListener('touchstart', function() {}, { once: true });
+        };
+        
+        // Ekran boyutu değiştiğinde yeniden boyutlandırma
+        window.addEventListener('resize', function() {
+            // Balonların ve konfetilerin temizlenmesi
+            celebrationContainer.innerHTML = '';
+        });
+    </script>
+</body>
+</html>
